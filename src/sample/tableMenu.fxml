@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="TOP_LEFT" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.tableMenuController"
+          styleClass="background"
+          stylesheets="@DarkTheme.css">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="50" />
+        <ColumnConstraints percentWidth="50" />
+    </columnConstraints>
+    <TableView fx:id="foodTable" maxWidth="300" prefHeight="1000">
+        <columns>
+            <TableColumn text="Name" prefWidth="150" fx:id="nameCol" style="-fx-alignment: CENTER;" />
+            <TableColumn text="Ingredient" prefWidth="150" fx:id="ingredientCol" style="-fx-alignment: CENTER;"/>
+        </columns>
+    </TableView>
+    <AnchorPane GridPane.columnIndex="1"  >
+        <padding>
+            <Insets top="5" right="5" left="5" bottom="5"/>
+        </padding>
+        <HBox AnchorPane.topAnchor="250.0" spacing="5">
+            <Label text="Name" prefWidth="150"/>
+            <Label prefWidth="150" fx:id="nameLable" />
+        </HBox>
+        <HBox AnchorPane.topAnchor="300.0" spacing="5">
+            <Label text="Ingredient" prefWidth="150"/>
+            <Label fx:id="ingredientLabel" prefWidth="150" />
+        </HBox>
+        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="5">
+            <Button text="New" prefWidth="100" onAction="#handleNewFood"/>
+            <Button text="Delete" prefWidth="100" onAction="#handleDeleteFood" />
+        </HBox>
+    </AnchorPane>
+</GridPane>
