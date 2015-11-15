@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -85,36 +86,55 @@ public class tableMenuController implements Initializable
         }
 
     }
+    private newMenuController controller;
+    private Stage dialogStage;
+    private Parent page;
+    FXMLLoader loader;
+    public boolean showNewMenu(Food food)
+    {
 
-    public boolean showNewMenu(Food food) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(tableMenuController.class.getResource("newMenu.fxml"));
-        Stage dialogeStage = new Stage();
-        dialogeStage.setTitle("Add New Food");
-        dialogeStage.initModality(Modality.APPLICATION_MODAL);
-        AnchorPane page = (AnchorPane) loader.load();
-        Scene scene = new Scene(page);
-        dialogeStage.setScene(scene);
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            loader = new FXMLLoader();
+            //Parent root = loader.load(getClass().getResource("newMenu.fxml"));
+            loader.setLocation(tableMenuController.class.getResource("newMenu.fxml"));
+            page = loader.load();
 
-        //set the person into the newMenuController
-        newMenuController controller = loader.getController();
-        controller.setDialogeStage(dialogeStage);
-        controller.setFood(food);
-        dialogeStage.showAndWait();
-        return controller.isAddClicked();
+            // Create the dialog Stage.
+            dialogStage = new Stage();
+            dialogStage.setTitle("Add New Person");
+            Scene scene = new Scene(page,400,250);
+            dialogStage.setScene(scene);
+            dialogStage.setResizable(false);
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+
+            // Set the person into the controller.
+            controller = loader.getController();
+            if(controller != null)
+                System.out.println("deewe");
+            controller.setDialogStage(dialogStage);
+            controller.setFood(food);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            return controller.isAddClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
+
     public void handleNewFood(ActionEvent actionEvent) throws IOException
     {
 
+        Food temp = new Food();
+        boolean addClicked = showNewMenu(temp);
+        if(addClicked)
+        {
+            foodData.add(temp);
+        }
 
-        showFoodDetails(new Food("dsf","sdf"));
-       /* Parent root = FXMLLoader.load(getClass().getResource("newMenu.fxml"));
-        Stage popupStage = new Stage();
-        Scene scene = new Scene(root,400,250);
-        popupStage.setScene(scene);
-        popupStage.setResizable(false);
-        popupStage.initModality(Modality.APPLICATION_MODAL);
-        popupStage.showAndWait();*/
+
     }
 
 

@@ -12,32 +12,37 @@ public class newMenuController
 {
     Food food;
     public ObservableList<Food> foodData;
-    public boolean isAddClicked()
-    {
-
-        return false;
-    }
-
-    public newMenuController( ObservableList<Food> foodData){ this.foodData = foodData;}
+    private boolean addClicked = false;
     public TextField nameTextField;
     public TextField ingredientTextField;
 
-    public void setDialogeStage(Stage dialogeStage) {
-        this.dialogeStage = dialogeStage;
-    }
 
-    private Stage dialogeStage;
+    private Stage dialogStage;
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
 
     public void setFood(Food food)
     {
         this.food = food;
         nameTextField.setText(food.getName());
         ingredientTextField.setText(food.getIngredient());
+
+    }
+    public boolean isAddClicked()
+    {
+        return addClicked;
     }
     public void addData(ActionEvent actionEvent) {
-        /*if(nameTextField.getText() != "" && ingredientTextField.getText() != "")
+        if( nameTextField.getText() != null && ingredientTextField.getText() != null
+                && nameTextField.getText() != "" && ingredientTextField.getText() != "")
         {
-
-        }*/
+            food.setName(nameTextField.getText());
+            food.setIngredient(ingredientTextField.getText());
+            addClicked = true;
+            dialogStage.close();
+        }
     }
+
+
 }

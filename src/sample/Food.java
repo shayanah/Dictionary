@@ -16,6 +16,12 @@ public class Food implements Comparable<Food>
         this.ingredient = new SimpleStringProperty(ingredient);
     }
 
+    public Food()
+    {
+        this.name = new SimpleStringProperty("");
+        this.ingredient = new SimpleStringProperty("");
+    }
+
     @Override
     public String toString() {
         return "Food{" +
