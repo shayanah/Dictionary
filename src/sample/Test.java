@@ -24,6 +24,8 @@ public class Test
         a.clearQueue();
         a.preorderWalk(a.getRoot());
         System.out.println(a);
+
+
         BST<Food> b = new BST<>();
         b.add(new Food ("salad","sdf"));
         b.add(new Food ("beef","sdf"));
@@ -33,20 +35,28 @@ public class Test
         b.add(new Food ("salad","sdf"));
         b.add(new Food ("cheese","sdf"));
         b.clearQueue();
-        b.inorderWalk(b.getRoot());
-
+        b.preorderWalk(b.getRoot());
         System.out.println(b);
-        /*Food f = b.search(new Food("pizza","sdf"));
-        Food k = b.search(new Food("ee","sdf"));
+        b.balance();
+        b.clearQueue();
+        b.preorderWalk(b.getRoot());
+        System.out.println("&&&&&&&&&&&&&");
+        System.out.println(b);
+        System.out.println("&&&&&&&&&&&&&");
+
+
+
+       /* Food f = b.search(new Food("pizza","sdf"));
+        Food m = b.search(new Food("ee","sdf"));
         Food n = b.search(new Food("salad","sdf"));
-        System.out.println(f);
+        System.out.println(f.getIngredient());
         if(f != null)
         {
             f.setIngredient("cheese, mushrooms");
         }
-        System.out.println(n);
-        System.out.println(k);
-        System.out.println(b);*/
+        System.out.println(n.getIngredient());
+       // System.out.println(m.getIngredient());
+        System.out.println(b);
         int i = 0;
         b.delete(new Food("salad", "sdf"));
       //  b.delete(new Food("beef", "sdf"));
@@ -55,14 +65,15 @@ public class Test
         b.delete(new Food ("greek salad","sdf"));
        // b.delete(new Food ("cheese","sdf"));
         b.delete(new Food ("salad","sdf"));
-
+        System.out.println(b.getLenght());
         b.clearQueue();
         b.inorderWalk(b.getRoot());
         System.out.println(b);
         BinaryFile.saveTheInventory(new Food("burger","meat"),"test.bin");
         Food k = BinaryFile.readTheFood("test.bin");
         System.out.println("*********" + k);
+        System.out.println("*********" + k);
         BST<Food> c = BinaryFile.readTheInventory("bin.out");
-        System.out.println(c);
+        System.out.println(c);*/
     }
 }

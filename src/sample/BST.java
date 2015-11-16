@@ -1,6 +1,7 @@
 package sample;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -276,6 +277,11 @@ public class BST<T extends Comparable<T>> implements Serializable
         return null;
     }
 
+
+
+
+
+
     /**
      * in order traversal
      * @param r
@@ -321,8 +327,43 @@ public class BST<T extends Comparable<T>> implements Serializable
     /**
      * empty queue
      */
-    public void clearQueue(){q= new LinkedList<T>();}
+    public void clearQueue()
+    {
+        q = new LinkedList<T>();
+    }
 
+    private void insertTree(int low, int high)
+    {
+        if(low == high)
+            add((T)foodArray[low]);
+        else if(low + 1 == high)
+        {
+            add((T)foodArray[low]);
+            add((T)foodArray[high]);
+        }
+        else
+        {
+            int mid = ( low + high) / 2 ;
+            add((T)foodArray[mid]);
+            insertTree(low,mid-1);
+            insertTree(mid+1,high);
+        }
+
+    }
+    private Food[] foodArray;
+    public void balance()
+    {
+        try {
+            clearQueue();
+            inorderWalk(getRoot());
+            foodArray =  new Food [lenght];
+            q.toArray(foodArray);
+            root = null;
+            insertTree(0,foodArray.length-1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public String toString() {
         return "BST{" +
