@@ -61,4 +61,16 @@ public class Food implements Comparable<Food>
     public void setIngredient(String ingredient) {
         this.ingredient.set(ingredient);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Food)) return false;
+
+        Food food = (Food) o;
+
+        if (!name.get().equals(food.name.get())) return false;
+        return ingredient.get().equals(food.ingredient.get());
+    }
+
 }

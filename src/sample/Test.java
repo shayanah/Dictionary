@@ -32,6 +32,31 @@ public class Test
         b.add(new Food ("greek salad","sdf"));
         b.add(new Food ("salad","sdf"));
         b.add(new Food ("cheese","sdf"));
+        b.traveresal();
+        b.inorderWalk(b.getRoot());
+
+        System.out.println(b);
+        /*Food f = b.search(new Food("pizza","sdf"));
+        Food k = b.search(new Food("ee","sdf"));
+        Food n = b.search(new Food("salad","sdf"));
+        System.out.println(f);
+        if(f != null)
+        {
+            f.setIngredient("cheese, mushrooms");
+        }
+        System.out.println(n);
+        System.out.println(k);
+        System.out.println(b);*/
+        int i = 0;
+        b.delete(new Food("salad", "sdf"));
+      //  b.delete(new Food("beef", "sdf"));
+        b.delete(new Food("steak", "sdf"));
+      //  b.delete(new Food("pizza", "sdf"));
+        b.delete(new Food ("greek salad","sdf"));
+       // b.delete(new Food ("cheese","sdf"));
+        b.delete(new Food ("salad","sdf"));
+
+        b.traveresal();
         b.inorderWalk(b.getRoot());
         System.out.println(b);
     }

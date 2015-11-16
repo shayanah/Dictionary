@@ -79,7 +79,6 @@ public class tableMenuController implements Initializable
             int selectedIndex = foodTable.getSelectionModel().getSelectedIndex();
             foodTable.getItems().remove(selectedIndex);
             //foodData.remove(selectedIndex);
-            System.out.println(foodData);
         } catch (Exception e)
         {
 
@@ -110,8 +109,6 @@ public class tableMenuController implements Initializable
 
             // Set the person into the controller.
             controller = loader.getController();
-            if(controller != null)
-                System.out.println("deewe");
             controller.setDialogStage(dialogStage);
             controller.setFood(food);
 

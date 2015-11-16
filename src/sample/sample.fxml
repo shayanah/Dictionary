@@ -14,11 +14,10 @@
 
 <GridPane alignment="center" hgap="10" styleClass="background"
           stylesheets="@DarkTheme.css" vgap="5" xmlns="http://javafx.com/javafx/8"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller" >
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller"  fx:id="mainGrid">
     <rowConstraints>
         <RowConstraints percentHeight="15" />
-        <RowConstraints percentHeight="15" />
-        <RowConstraints percentHeight="45" />
+        <RowConstraints percentHeight="50" />
         <RowConstraints percentHeight="25" />
 
     </rowConstraints>
@@ -28,10 +27,7 @@
         <ColumnConstraints percentWidth="25" />
     </columnConstraints>
    <children>
-   
-       <Button alignment="CENTER" maxWidth="1000" onAction="#addFunc"
-               text="Add" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
        <Button alignment="CENTER" maxHeight="10000" maxWidth="1000"
-               text="Show List" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#ShowListFunc" />
+               text="Show Food Menu" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#ShowListFunc" />
    </children>
 </GridPane>
