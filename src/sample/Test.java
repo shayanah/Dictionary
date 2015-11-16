@@ -15,13 +15,13 @@ public class Test
         a.add(8);
         a.add(10);
         a.add(4);
-        a.traveresal();
+        a.clearQueue();
         a.inorderWalk(a.getRoot());
         System.out.println(a);
-        a.traveresal();
+        a.clearQueue();
         a.postorderWalk(a.getRoot());
         System.out.println(a);
-        a.traveresal();
+        a.clearQueue();
         a.preorderWalk(a.getRoot());
         System.out.println(a);
         BST<Food> b = new BST<>();
@@ -32,7 +32,7 @@ public class Test
         b.add(new Food ("greek salad","sdf"));
         b.add(new Food ("salad","sdf"));
         b.add(new Food ("cheese","sdf"));
-        b.traveresal();
+        b.clearQueue();
         b.inorderWalk(b.getRoot());
 
         System.out.println(b);
@@ -56,8 +56,13 @@ public class Test
        // b.delete(new Food ("cheese","sdf"));
         b.delete(new Food ("salad","sdf"));
 
-        b.traveresal();
+        b.clearQueue();
         b.inorderWalk(b.getRoot());
         System.out.println(b);
+        BinaryFile.saveTheInventory(new Food("burger","meat"),"test.bin");
+        Food k = BinaryFile.readTheFood("test.bin");
+        System.out.println("*********" + k);
+        BST<Food> c = BinaryFile.readTheInventory("bin.out");
+        System.out.println(c);
     }
 }

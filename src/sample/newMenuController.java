@@ -2,6 +2,8 @@ package sample;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -10,6 +12,8 @@ import javafx.stage.Stage;
  */
 public class newMenuController
 {
+    public Button addBtn;
+    public Label foundLabel;
     Food food;
     public ObservableList<Food> foodData;
     private boolean addClicked = false;
@@ -17,7 +21,10 @@ public class newMenuController
     public TextField ingredientTextField;
 
 
+
+    private BST<Food> tree;
     private Stage dialogStage;
+    public void setTree(BST<Food> tree) {this.tree = tree;}
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
@@ -33,15 +40,39 @@ public class newMenuController
     {
         return addClicked;
     }
-    public void addData(ActionEvent actionEvent) {
-        if( nameTextField.getText() != null && ingredientTextField.getText() != null
-                && nameTextField.getText() != "" && ingredientTextField.getText() != "")
+    private boolean existFlag = true;
+    public void addData(ActionEvent actionEvent)
+    {
+        if(existFlag)
         {
-            food.setName(nameTextField.getText());
-            food.setIngredient(ingredientTextField.getText());
-            addClicked = true;
-            dialogStage.close();
+            if( nameTextField.getText() != null && ingredientTextField.getText() != null
+                    && nameTextField.getText() != "" && ingredientTextField.getText() != "")
+            {
+                if( tree.search(new Food(nameTextField.getText(),ingredientTextField.getText())) == null )
+                {
+                    existFlag = false;
+                    addBtn.setText("Add");
+                    foundLabel.setText("");
+                }
+                else
+                {
+                    foundLabel.setText("Your choice of food is already in the menu");
+                }
+            }
+
         }
+        else
+        {
+            if( nameTextField.getText() != null && ingredientTextField.getText() != null
+                    && nameTextField.getText() != "" && ingredientTextField.getText() != "")
+            {
+                food.setName(nameTextField.getText());
+                food.setIngredient(ingredientTextField.getText());
+                addClicked = true;
+                dialogStage.close();
+            }
+        }
+
     }
 
 

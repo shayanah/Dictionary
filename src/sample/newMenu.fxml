@@ -43,8 +43,8 @@
                 </HBox>
             </children>
         </VBox>
-        <Button maxWidth="1000" onAction="#addData" text="Add" GridPane.rowIndex="2" />
-        <Label maxWidth="1000" text="" GridPane.rowIndex="3" />
+        <Button maxWidth="1000" onAction="#addData" text="Search" GridPane.rowIndex="2" fx:id="addBtn" />
+        <Label maxWidth="1000" fx:id="foundLabel" GridPane.rowIndex="3" />
     </children>
 
 </GridPane>

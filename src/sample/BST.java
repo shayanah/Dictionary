@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,10 +8,15 @@ import java.util.Queue;
 /**
  * Created by shawn on 11/11/2015.
  */
-public class BST<T extends Comparable<T>>
+public class BST<T extends Comparable<T>> implements Serializable
 {
     private int lenght;
     private Node<T> root;
+
+    public Queue<T> getQ() {
+        return q;
+    }
+
     private Queue<T> q;
     public BST()
     {
@@ -18,8 +24,14 @@ public class BST<T extends Comparable<T>>
         q = new LinkedList<T>();
         lenght = 0;
     }
+
+    /**
+     * Add new data to the tree
+     * @param data
+     */
     public void add(T data)
     {
+        lenght++;
         if(root == null)
         {
             root = new Node<>(data);
@@ -54,6 +66,12 @@ public class BST<T extends Comparable<T>>
             }
         }
     }
+
+    /**
+     * Delete specified data from tree
+     * @param data
+     * @return true if deleted
+     */
     public boolean delete(T data)
     {
         try
@@ -93,6 +111,10 @@ public class BST<T extends Comparable<T>>
         return false;
     }
 
+    /**
+     *
+     * @return true if the tree is empty
+     */
     private boolean isEmpty()
     {
         if(root == null)
@@ -101,6 +123,11 @@ public class BST<T extends Comparable<T>>
             return false;
     }
 
+    /**
+     * call from delete to remove data
+     * @param current
+     * @param parent
+     */
     private void removeData(Node current,Node parent)
     {
         try {
@@ -218,6 +245,11 @@ public class BST<T extends Comparable<T>>
             return false;
     }
 
+    /**
+     * search for specified data
+     * @param data
+     * @return a pointer to the data if exists
+     */
     public T search(T data)
     {
 
@@ -244,6 +276,10 @@ public class BST<T extends Comparable<T>>
         return null;
     }
 
+    /**
+     * in order traversal
+     * @param r
+     */
     public void inorderWalk(Node r)
     {
         if( r != null)
@@ -253,6 +289,11 @@ public class BST<T extends Comparable<T>>
             inorderWalk(r.getRight());
         }
     }
+
+    /**
+     * pre order traversal
+     * @param r
+     */
     public void preorderWalk(Node r)
     {
         if( r != null)
@@ -262,6 +303,11 @@ public class BST<T extends Comparable<T>>
             preorderWalk(r.getRight());
         }
     }
+
+    /**
+     * post order traversal
+     * @param r
+     */
     public void postorderWalk(Node r)
     {
         if( r != null)
@@ -271,7 +317,11 @@ public class BST<T extends Comparable<T>>
             q.add((T) r.getData());
         }
     }
-    public void traveresal(){q= new LinkedList<T>();}
+
+    /**
+     * empty queue
+     */
+    public void clearQueue(){q= new LinkedList<T>();}
 
     @Override
     public String toString() {

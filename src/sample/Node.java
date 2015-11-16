@@ -1,9 +1,11 @@
 package sample;
 
+import java.io.Serializable;
+
 /**
  * Created by shawn on 11/11/2015.
  */
-public class Node<T extends Comparable<T>>
+public class Node<T extends Comparable<T>> implements Serializable
 {
     private T data;
     private Node left;

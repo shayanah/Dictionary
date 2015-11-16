@@ -20,7 +20,8 @@
         <ColumnConstraints percentWidth="50" />
         <ColumnConstraints percentWidth="50" />
     </columnConstraints>
-    <TableView fx:id="foodTable" maxWidth="300" prefHeight="1000">
+    <TableView fx:id="foodTable" maxWidth="310" prefHeight="1000">
+
         <columns>
             <TableColumn text="Name" prefWidth="150" fx:id="nameCol" style="-fx-alignment: CENTER;" />
             <TableColumn text="Ingredient" prefWidth="150" fx:id="ingredientCol" style="-fx-alignment: CENTER;"/>
@@ -30,6 +31,11 @@
         <padding>
             <Insets top="5" right="5" left="5" bottom="5"/>
         </padding>
+        <VBox AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="5">
+            <Button text="Pre Order Walk" prefWidth="200" onAction="#handlePreOrderWalk"/>
+            <Button text="In Order Walk" prefWidth="200" onAction="#handleInOrderWalk" />
+            <Button text="Post Order Walk" prefWidth="200" onAction="#handlePostOrderWalk" />
+        </VBox>
         <HBox AnchorPane.topAnchor="250.0" spacing="5">
             <Label text="Name" prefWidth="150"/>
             <Label prefWidth="150" fx:id="nameLable" />
@@ -38,9 +44,13 @@
             <Label text="Ingredient" prefWidth="150"/>
             <Label fx:id="ingredientLabel" prefWidth="150" />
         </HBox>
-        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="5">
-            <Button text="New" prefWidth="100" onAction="#handleNewFood"/>
-            <Button text="Delete" prefWidth="100" onAction="#handleDeleteFood" />
-        </HBox>
+        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="5">
+            <HBox spacing="5">
+                <Button text="New" prefWidth="100" onAction="#handleNewFood"/>
+                <Button text="Delete" prefWidth="100" onAction="#handleDeleteFood" />
+            </HBox>
+            <Button text="Save" prefWidth="205" onAction="#saveFunc"/>
+        </VBox>
+
     </AnchorPane>
 </GridPane>

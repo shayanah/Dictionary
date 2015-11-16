@@ -3,10 +3,12 @@ package sample;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.io.*;
+
 /**
  * Created by shawn on 11/11/2015.
  */
-public class Food implements Comparable<Food>
+public class Food implements Comparable<Food>, Externalizable
 {
     private StringProperty name;
     private StringProperty ingredient;
@@ -73,4 +75,17 @@ public class Food implements Comparable<Food>
         return ingredient.get().equals(food.ingredient.get());
     }
 
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException
+    {
+        out.writeObject(getName());
+        out.writeObject(getIngredient());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException
+    {
+        setName((String) in.readObject() );
+        setIngredient((String) in.readObject() );
+    }
 }

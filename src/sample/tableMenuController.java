@@ -37,23 +37,59 @@ public class tableMenuController implements Initializable
     public TextField nameTextField;
     public TextField ingredientTextField;
 
-    public void showTable()
-    {
+    private BST<Food> tree = null;
 
+    public void initializeTable()
+    {
+       /* tree = new BST<>();
+        tree.add(new Food ("salad","sdf"));
+        tree.add(new Food ("beef","sdf"));
+        tree.add(new Food ("beef","sdf"));
+        tree.add(new Food ("steak","sdf"));
+        tree.add(new Food ("pizza","sdf"));
+        tree.add(new Food ("greek salad","sdf"));
+        tree.add(new Food ("salad","sdf"));
+        tree.add(new Food ("cheese","sdf"));
+        copyTreeToTable();*/
+
+        try {
+            tree = BinaryFile.readTheInventory("out.bin");
+            copyTreeToTable();
+
+        }
+        catch (Exception e)
+        {
+            if(tree == null)
+                tree = new BST<Food>();
+            e.printStackTrace();
+        }
+
+    }
+    public void copyTreeToTable()
+    {
+        tree.clearQueue();
+        tree.inorderWalk(tree.getRoot());
+        for(Food element: tree.getQ())
+        {
+            foodData.add(element);
+        }
+    }
+    public void saveFunc()
+    {
+        try
+        {
+            BinaryFile.saveTheInventory(tree,"out.bin");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        foodData.add(new Food ("salad","sdf"));
-        foodData.add(new Food ("beef","sdf"));
-        foodData.add(new Food ("beef","sdf"));
-        foodData.add(new Food ("steak","sdf"));
-        foodData.add(new Food ("pizza","sdf"));
-        foodData.add(new Food ("greek salad","sdf"));
-        foodData.add(new Food ("salad","sdf"));
-        foodData.add(new Food ("cheese","sdf"));
 
-
+        initializeTable();
         nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         ingredientCol.setCellValueFactory( cellData -> cellData.getValue().ingredientProperty());
 
@@ -77,8 +113,9 @@ public class tableMenuController implements Initializable
         try
         {
             int selectedIndex = foodTable.getSelectionModel().getSelectedIndex();
-            foodTable.getItems().remove(selectedIndex);
+            Food trashFood = foodTable.getItems().remove(selectedIndex);
             //foodData.remove(selectedIndex);
+            tree.delete(trashFood);
         } catch (Exception e)
         {
 
@@ -111,6 +148,7 @@ public class tableMenuController implements Initializable
             controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setFood(food);
+            controller.setTree(tree);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -129,11 +167,43 @@ public class tableMenuController implements Initializable
         if(addClicked)
         {
             foodData.add(temp);
+            tree.add(temp);
         }
 
 
     }
 
 
+    public void handlePreOrderWalk(ActionEvent actionEvent)
+    {
+        tree.clearQueue();
+        tree.preorderWalk(tree.getRoot());
+        foodData.clear();
+        for(Food element: tree.getQ())
+        {
+            foodData.add(element);
+        }
+    }
 
+    public void handleInOrderWalk(ActionEvent actionEvent)
+    {
+        tree.clearQueue();
+        tree.inorderWalk(tree.getRoot());
+        foodData.clear();
+        for(Food element: tree.getQ())
+        {
+            foodData.add(element);
+        }
+    }
+
+    public void handlePostOrderWalk(ActionEvent actionEvent)
+    {
+        tree.clearQueue();
+        tree.postorderWalk(tree.getRoot());
+        foodData.clear();
+        for(Food element: tree.getQ())
+        {
+            foodData.add(element);
+        }
+    }
 }
